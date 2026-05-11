@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class trainingLearn1 {
+public class TrainingLearn1 {
 
     public static void main(String[] args) {
 
@@ -16,12 +16,8 @@ public class trainingLearn1 {
 
         if ((age >= 18 && age <= 65) || (salary > 35000)) {
             System.out.println("true");
-        }
-        else {
+        } else {
             System.out.println("false");
         }
-
-
     }
-
 }
