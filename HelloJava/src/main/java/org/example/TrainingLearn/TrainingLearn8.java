@@ -19,12 +19,10 @@ public class TrainingLearn8 {
         golub.sing();
 
     }
-
 }
 
 // Абстрактный родительский класс
 abstract class Bird {
-
     String species; // Поле типа стринг
 
     Bird(String species) {
