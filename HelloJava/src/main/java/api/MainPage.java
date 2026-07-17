@@ -17,7 +17,7 @@ public class MainPage {
     /*
     Локатор с типом указывающий на селектор
      */
-    private static By welcomeString = By.cssSelector("//div[@class='sqs-html-content']");
+     private static By welcomeString = By.cssSelector("div.sqs-html-content");
 
     /*
     Метод, У КОТОРОГО ТОЖЕ ДОЛЖЕН БЫТЬ ТИП!
