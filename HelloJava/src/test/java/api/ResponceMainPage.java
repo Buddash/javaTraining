@@ -2,9 +2,13 @@ package api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import lombok.extern.log4j.Log4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@Log4j
 @DisplayName("Проверка API запросов на сайт")
 public class ResponceMainPage {
 
@@ -25,7 +29,7 @@ public class ResponceMainPage {
         и вывожу его
          */
         String responseBody = responseOfSite.getBody().asString();
-        System.out.println("Тело ответа: " + responseBody);
+       // System.out.println("Тело ответа: " + responseBody);
 
 
         /*
@@ -34,6 +38,8 @@ public class ResponceMainPage {
          */
         String body = responseOfSite.asString();
 
+        System.out.println(body);
+
         /*
         Выделяю из ответа тайтл чтобы проверить имя сайта
          */
@@ -41,24 +47,18 @@ public class ResponceMainPage {
         int endTitleSite = body.indexOf("</title>");
         String titleSite = body.substring(startTitleSite, endTitleSite);
 
-        /*
-        Если имя совпадает, то вывожу сообщение о том что ок, если нет, то ошщибку
-         */
-        if (titleSite.contains(TestData.TITLE_SITE)) // TODO: обернуть в обработчик ошибок
-        {
-            System.out.println("OK - the site is correct");
-        } else {
-            System.out.println("Error");
-        }
-
+        boolean openResult = titleSite.contains(TestData.TITLE_SITE);
+        log.info("Сайт открылся? - " + openResult);
+        assertTrue(titleSite.contains(TestData.TITLE_SITE));
 
         // Код ответа
         int statusCode = responseOfSite.getStatusCode();
 
         if (statusCode == TestData.STATUS_CODE) {
-            System.out.println("Запрос успешен, код:" + statusCode);
+            log.info("Запрос успешен, код:" + statusCode);
         } else {
-            System.out.println("Запрос неудачный, код:" + statusCode);
+            log.info("Запрос неудачный, код:" + statusCode);
         }
+        assertTrue(statusCode == TestData.STATUS_CODE);
     }
 }
