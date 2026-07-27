@@ -12,7 +12,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
+//TODO спросить про блее правильное решение
 public static class ValidParentheses {
     public boolean isValid(String stroka) {
         Deque<Character> myList = new ArrayDeque<>();

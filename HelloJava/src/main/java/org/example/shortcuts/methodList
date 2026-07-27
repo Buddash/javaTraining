@@ -1,0 +1,136 @@
+Шпаргалка по выбору методов
+Что нужно сделать	Какой метод	На каком классе
+Взять элемент по индексу	get(i)	ArrayList / LinkedList
+Вставить в середину	add(i, e)	ArrayList / LinkedList
+Добавить в начало	addFirst(e)	LinkedList / ArrayDeque
+Добавить в конец	add(e) или addLast(e)	любой
+Удалить первый	removeFirst()	LinkedList / ArrayDeque
+Удалить последний	removeLast()	LinkedList / ArrayDeque
+Работа как стек (LIFO)	push / pop / peek	LinkedList / ArrayDeque
+Работа как очередь (FIFO)	offer / poll / peek	LinkedList / ArrayDeque
+Быстрый доступ и мало вставок	get / set	ArrayList
+Много вставок в начале/конце	addFirst / addLast	ArrayDeque (быстрее)
+Нужны индексы + вставки с концов	все методы List + Deque	LinkedList
+
+
+
+
+Иерархия
+Iterable (интерфейс)
+    └── Collection (интерфейс)
+            ├── List (интерфейс) — индексированный список
+            │       ├── ArrayList
+            │       ├── LinkedList (также реализует Deque)
+            │       └── Vector (устаревший, синхронизированный)
+            │             └── Stack (устаревший, наследует Vector)
+            │
+            ├── Set (интерфейс) — без дубликатов
+            │       ├── HashSet
+            │       ├── LinkedHashSet (сохраняет порядок добавления)
+            │       └── TreeSet (отсортированный, реализует NavigableSet)
+            │
+            ├── Queue (интерфейс) — очередь (FIFO)
+            │       ├── LinkedList (реализует и Queue, и Deque)
+            │       ├── PriorityQueue — очередь с приоритетом
+            │       └── ArrayDeque (реализует Deque)
+            │
+            └── Deque (интерфейс) — двусторонняя очередь
+                    ├── ArrayDeque
+                    └── LinkedList
+
+
+
+
+1. ArrayList
+Структура: динамический массив.
+Особенность: быстрый доступ по индексу, медленная вставка/удаление в середине.
+
+Основные методы
+
+add(e)	добавить в конец
+add(index, e)	вставить по индексу (со сдвигом)
+get(index)	получить по индексу
+set(index, e)	заменить элемент по индексу
+remove(index)	удалить по индексу (со сдвигом)
+remove(Object o)	удалить первое вхождение объекта
+indexOf(o) / lastIndexOf(o)	индекс первого/последнего вхождения
+contains(o)	проверить наличие
+size()	размер
+isEmpty()	пуст ли
+clear()	очистить
+toArray()	превратить в массив
+trimToSize()	уменьшить ёмкость до текущего размера (экономия памяти)
+ensureCapacity(min)	увеличить ёмкость заранее (оптимизация)
+
+
+2. LinkedList
+Структура: двусвязный список.
+Особенность: быстрая вставка/удаление в начале и конце, медленный доступ по индексу.
+Реализует: List + Deque.
+
+Методы от List (как у ArrayList)
+
+add(e) / add(index, e)	добавить в конец / по индексу
+get(index)	получить по индексу (медленно O(n))
+set(index, e)	заменить по индексу
+remove(index) / remove(o)	удалить
+indexOf(o) / lastIndexOf(o)	поиск индекса
+contains(o)	проверка наличия
+size() / isEmpty() / clear()	размер, проверка, очистка
+
+
+Методы от Deque (работа с концами)
+
+Добавить	addFirst(e) / offerFirst(e)	addLast(e) / offerLast(e)
+Удалить	removeFirst() / pollFirst()	removeLast() / pollLast()
+Посмотреть	getFirst() / peekFirst()	getLast() / peekLast()
+
+
+Специфические методы LinkedList (свои)
+Метод	Описание
+push(e)	добавить в начало (синоним addFirst)
+pop()	удалить и вернуть первый (синоним removeFirst)
+peek()	посмотреть первый (синоним peekFirst)
+poll()	удалить и вернуть первый (синоним pollFirst)
+offer(e)	добавить в конец (синоним offerLast)
+removeFirstOccurrence(o)	удалить первое вхождение с начала
+removeLastOccurrence(o)	удалить последнее вхождение с конца
+clone()	поверхностное копирование
+toArray()	в массив
+
+3. ArrayDeque
+Структура: динамический кольцевой массив.
+Особенность: быстрее LinkedList как стек/очередь. Не хранит null.
+Реализует: только Deque (не List).
+
+Методы Deque (полный набор)
+Операция	Начало (First)	Конец (Last)
+Добавить (с исключением)	addFirst(e)	addLast(e)
+Добавить (с возвратом)	offerFirst(e)	offerLast(e)
+Удалить (с исключением)	removeFirst()	removeLast()
+Удалить (с возвратом)	pollFirst()	pollLast()
+Посмотреть (с исключением)	getFirst()	getLast()
+Посмотреть (с возвратом)	peekFirst()	peekLast()
+
+Методы для стека (LIFO)
+Метод	Описание	Синоним
+push(e)	добавить в начало	addFirst(e)
+pop()	удалить и вернуть с начала	removeFirst()
+peek()	посмотреть первый	peekFirst()
+Методы для очереди (FIFO)
+Метод	Описание	Синоним
+offer(e)	добавить в конец	offerLast(e)
+poll()	удалить и вернуть с начала	pollFirst()
+peek()	посмотреть первый	peekFirst()
+add(e)	добавить в конец (исключение)	addLast(e)
+remove()	удалить с начала (исключение)	removeFirst()
+element()	посмотреть первый (исключение)	getFirst()
+Специфические методы ArrayDeque
+Метод	Описание
+removeFirstOccurrence(o)	удалить первое вхождение (с начала)
+removeLastOccurrence(o)	удалить последнее вхождение (с конца)
+contains(o)	проверить наличие
+size() / isEmpty()	размер / пуст ли
+clear()	очистить
+toArray()	в массив
+clone()	поверхностное копирование

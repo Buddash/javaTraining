@@ -1,9 +1,7 @@
 
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
 
 static class SearchDouble {
     public int removeDuplicates(int[] nums) {
@@ -11,7 +9,7 @@ static class SearchDouble {
         int i = 0;
         list.add(String.valueOf(nums[i]));
 
-        for (i = 0; i < nums.length; i++) {
+        for (i = 1; i < nums.length; i++) {
             if (list.getLast().equals(String.valueOf(nums[i]))) {
                 list.removeLast();
                 list.add(String.valueOf(nums[i]));
@@ -27,7 +25,7 @@ static class SearchDouble {
 public static void main(String[] args) {
     SearchDouble searchDouble = new SearchDouble();
 
-    int[] nums = {0,0,1,1,1,2,2,3,3,4};
+    int[] nums = {1,1,2};
 
     System.out.println(searchDouble.removeDuplicates(nums));
 
