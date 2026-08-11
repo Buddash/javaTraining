@@ -1,6 +1,7 @@
 package ui;
 
 import api.TestData;
+import lombok.extern.log4j.Log4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@Log4j
 @DisplayName("Переход на сайт и проверка корретности")
 public class OpenMainPage {
 
@@ -32,8 +33,10 @@ public class OpenMainPage {
         MainPage mainPage = new MainPage(driver);
 
         //И наконец буду проверять что элемент существует на данной странице
+        log.info("Переход на стартовую страницу сайта " + TestData.TITLE_SITE);
         assertNotNull(MainPage.getHelloString());
         assertTrue(mainPage.getHelloString().isDisplayed());
+        log.info("Переход успешный, находимся на стартовой странице!");
 
         driver.quit();
     }
