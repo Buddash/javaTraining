@@ -22,7 +22,6 @@ public class Service extends AbstractService {
                 .formParam("url", testUrl)
                 .post(firstEndpoint)
                 .then()
-                .log().all()
                 .extract()
                 .response();
 

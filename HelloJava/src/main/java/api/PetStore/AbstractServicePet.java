@@ -1,42 +1,40 @@
-package api;
+package api.PetStore;
 
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import lombok.Data;
+import io.restassured.filter.log.LogDetail;
 
-
-public class AbstractService {
+public class AbstractServicePet {
 
     private RequestSpecification requestSpecification;
     private String url;
 
-    public AbstractService(String url) {
+    public AbstractServicePet(String url) {
 
         this.url = url;
 
         this.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(url)
-                .setContentType(ContentType.URLENC)
-                .log(LogDetail.ALL)
+                .setContentType(ContentType.JSON)
+                .log(LogDetail.ALL) //логирует только запрос
                 .build();
-
     }
 
-    public RequestSpecification getRequestSpecification() {
+    public RequestSpecification getRequestSpecification () {
         return requestSpecification;
-    }
+}
 
     public String getUrl() {
-        return url;
-    }
+    return url;
+}
 
     public void setUrl(String url) {
-        this.url = url;
-    }
+    this.url = url;
+}
 
     public void setRequestSpecification(RequestSpecification requestSpecification) {
         this.requestSpecification = requestSpecification;
     }
 }
+
