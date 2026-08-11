@@ -19,7 +19,7 @@ public class AbstractService {
         this.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(url)
                 .setContentType(ContentType.URLENC)
-                .log(LogDetail.ALL)
+                .log(LogDetail.ALL) //логирует только запрос
                 .build();
 
     }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DataPetFullResponce {
 
-    private int id;
+    private Integer id;
     private Category category;
     private String name;
     private List<String> photoUrls;
@@ -21,13 +21,8 @@ public class DataPetFullResponce {
         this.id = id;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
+    public Category getCategory() {return category;}
+    public void setCategory(Category category) {this.category = category;}
     public String getName() {
         return name;
     }
@@ -45,10 +40,49 @@ public class DataPetFullResponce {
     public List<Tags> getTags() { return tags; }
     public void setTags(List<Tags> tags) { this.tags = tags; }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String status) {this.status = status;}
+    public String getStatus() {return status;}
+
+    public static class Tags {
+
+        private Integer id;
+        private String name;
+
+        public Tags() {};
+
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
     }
-    public String getStatus() {
-        return status;
+
+    public static class Category {
+        private Integer id;
+        private String name;
+
+        public Category() {};
+
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getName() {
+            return name;
+        }
     }
 }

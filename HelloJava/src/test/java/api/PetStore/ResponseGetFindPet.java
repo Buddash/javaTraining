@@ -11,16 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class ResponseGetFindPet {
 
+    FacadePet facadePet = new FacadePet();
+
     @Test
     @DisplayName("Успешный запрос и проверка полей ответа")
     public void getPetInfoSuccess() {
 
-        FacadePet facadePet = new FacadePet();
-
         assertThat(facadePet.getPetsStatusCode(SUCCESS_RESPONSE_200))
                 .as("Статус код неверен")//Обработчик ошибок, если еквайл провлится
                 .isEqualTo(200);
-        log.info("Код ответа: {}, ожидался: 200", facadePet.getPetsStatusCode(SUCCESS_RESPONSE_200)); //логирование, добавляется через аннотацию
 
         DataPetFullResponce pet = facadePet.getPets(SUCCESS_RESPONSE_200);
 
@@ -41,8 +40,6 @@ public class ResponseGetFindPet {
     @DisplayName("Делаем запрос с некорретным ID (Кириллица)")
     public void getPetInfoFailString() {
 
-        FacadePet facadePet = new FacadePet();
-
         assertThat(facadePet.getPetsStatusCode(PET_NOT_FOUND_404_STRING))
                 .as("Статус код неверен")//Обработчик ошибок, если еквайл провлится
                 .isEqualTo(404);
@@ -52,8 +49,6 @@ public class ResponseGetFindPet {
     @Test
     @DisplayName("Делаем запрос с некорретным ID (OOB)")
     public void getPetInfoFailOobOne() {
-
-        FacadePet facadePet = new FacadePet();
 
         assertThat(facadePet.getPetsStatusCode(PET_NOT_FOUND_404_OOB_1))
                 .as("Статус код неверен")//Обработчик ошибок, если еквайл провлится
@@ -65,8 +60,6 @@ public class ResponseGetFindPet {
     @DisplayName("Делаем запрос без ID")
     public void getPetInfoFailNoID() {
 
-        FacadePet facadePet = new FacadePet();
-
         assertThat(facadePet.getPetsStatusCode(PET_NOT_FOUND_404_NOT_ID))
                 .as("Статус код неверен")//Обработчик ошибок, если еквайл провлится
                 .isEqualTo(405);
@@ -76,8 +69,6 @@ public class ResponseGetFindPet {
     @Test
     @DisplayName("Делаем запрос без ID")
     public void getPetInfoFailOobTwo() {
-
-        FacadePet facadePet = new FacadePet();
 
         assertThat(facadePet.getPetsStatusCode(PET_NOT_FOUND_404_OOB_2))
                 .as("Статус код неверен")//Обработчик ошибок, если еквайл провлится

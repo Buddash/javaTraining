@@ -1,14 +1,14 @@
 package api;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@Data
 public class ResponsePost {
-    private String result_url;
+    @JsonProperty("result_url") private String result_url;
 
     public String getResult_url() {
         return result_url;

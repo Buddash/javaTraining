@@ -17,7 +17,6 @@ public class AbstractServicePet {
         this.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(url)
                 .setContentType(ContentType.JSON)
-                .log(LogDetail.ALL) //логирует только запрос
                 .build();
     }
 
