@@ -1,6 +1,5 @@
 package ui;
 
-import api.MainPage;
 import api.TestData;
 import lombok.extern.log4j.Log4j;
 import org.junit.jupiter.api.DisplayName;
